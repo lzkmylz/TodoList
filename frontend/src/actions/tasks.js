@@ -8,3 +8,27 @@ Task data structure:
 5 task title
 6 task description
 */
+
+// ADD TASK
+export const addTask = task => ({
+  type: 'ADD_TASK',
+  task,
+});
+
+export const startAddTask = (taskData = {}) => {
+  return dispatch => {
+    const {
+      startDate = 0,
+      expireDate = 0,
+      level = 0,
+      title = '',
+      description = '',
+    } = taskData;
+    let headers = {"Content-Type": "application/json"};
+    return fetch("/api/tasks/", {headers, })
+      .then(res => res.json())
+      .then(task => {
+        return dispatch(addTask(task));
+      });
+  };
+};

@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import filterReducer from '../reducers/filters';
 import taskReducer from '../reducers/tasks';
@@ -9,7 +9,7 @@ export default () => {
       filterReducer,
       taskReducer
     ]),
-    composeEnhancers(applyMiddleware(thunk))
+    applyMiddleware(thunk)
   );
 
   return store;

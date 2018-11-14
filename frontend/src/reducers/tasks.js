@@ -19,6 +19,7 @@ const taskReducer = (state = taskReducerDefaultState, action) => {
             action.updates
           ];
         }
+        return true;
       });
     case 'SET_TASKS':
       return action.tasks;
