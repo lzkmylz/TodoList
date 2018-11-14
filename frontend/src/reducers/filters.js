@@ -1,7 +1,7 @@
 // FILTERS REDUCER
 
 const filterReducerDefaultState = {
-  text: '',
+  titleText: '',
   sortBy: 'expireDate',
 };
 
@@ -12,10 +12,10 @@ const filterReducer = (state = filterReducerDefaultState, action) => {
         ...state,
         sortBy: 'level',
       };
-    case 'SORT_BY_TEXT':
+    case 'SORT_BY_TITLETEXT':
       return {
         ...state,
-        text: action.text,
+        text: action.titleText,
       };
     case 'SORT_BY_EXPIREDATE':
       return {
