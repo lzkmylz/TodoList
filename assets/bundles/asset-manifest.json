@@ -1,0 +1,10 @@
+{
+  "main.css": "/static/bundles/static/css/main.2618839c.css",
+  "main.js": "/static/bundles/js/main.2167bf42.js",
+  "main.js.map": "/static/bundles/js/main.2167bf42.js.map",
+  "media/logo.svg": "/static/bundles/media/logo.5d5d9eef.svg",
+  "static/css/main.2618839c.css.map": "/static/bundles/static/css/main.2618839c.css.map",
+  "index.html": "/static/bundles/index.html",
+  "precache-manifest.f10c80be21e864c48c0e570eac22ca76.js": "/static/bundles/precache-manifest.f10c80be21e864c48c0e570eac22ca76.js",
+  "service-worker.js": "/static/bundles/service-worker.js"
+}
