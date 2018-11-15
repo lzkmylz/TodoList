@@ -12,7 +12,7 @@ class Task(models.Model):
   6 task descript
   '''
   start_date = models.DateTimeField(auto_now_add=True)
-  expire_date = models.IntegerField()
+  expire_date = models.DateTimeField(auto_now_add=True)
   level = models.IntegerField()
   title = models.CharField(max_length=255)
   description = models.CharField(max_length=255)

@@ -1,3 +1,4 @@
+import moment from 'moment';
 /* 
 TASK ACTIONS
 Task data structure:
@@ -15,20 +16,87 @@ export const addTask = task => ({
   task,
 });
 
-export const startAddTask = (taskData = {}) => {
+export const startAddTask = (taskData = {
+  startDate: moment(),
+  expireDate: moment(),
+  level: 0,
+  title: '',
+  description: '',
+}) => {
   return dispatch => {
-    const {
-      startDate = 0,
-      expireDate = 0,
-      level = 0,
-      title = '',
-      description = '',
-    } = taskData;
     let headers = {"Content-Type": "application/json"};
-    return fetch("/api/tasks/", {headers, })
-      .then(res => res.json())
+    let body = JSON.stringify(taskData);
+
+    return fetch("/api/tasks/", {
+      headers,
+      method: "POST",
+      body,
+    }).then(res => res.json())
       .then(task => {
         return dispatch(addTask(task));
       });
   };
+};
+
+// REMOVE_TASK
+export const removeTask = ({ id }) => ({
+  type: "REMOVE_TASK",
+  id,
+});
+
+export const startRemoveTask = ({ id }) => {
+  return dispatch => {
+    let headers = {"Content-Type": "application/json"};
+
+    return fetch(`/api/tasks/${id}/`, {
+      headers,
+      method: "DELETE",
+    }).then(res => {
+        if (res.ok) {
+          return dispatch(removeTask({ id }));
+        }
+      })
+  }
+}
+
+// EDIT_TASK
+export const editTask = (id, updates) => ({
+  type: "EDIT_TASK",
+  id,
+  updates,
+});
+
+export const startEditTask = (id, updates) => {
+  return dispatch => {
+    let headers = {"Content-Type": "application/json"};
+    let body = JSON.stringify(updates);
+
+    return fetch(`/api/tasks/${id}/`, {
+      headers,
+      method: "PUT",
+      body,
+    }).then(res => res.json())
+      .then((id, updates) => {
+        return dispatch(editTask(id, updates));
+      })
+  };
+};
+
+//SET_TASKS
+export const setTasks = (tasks) => ({
+  type: "SET_TASKS",
+  tasks,
+});
+
+export const startSetTasks = () => {
+  return dispatch => {
+    let headers = {"Content-Type": "application/json"};
+
+    return fetch("/api/tasks/", {
+      headers,
+      method: "GET",
+    }).then(res => {
+      return dispatch(setTasks(res.json()));
+    });
+  }
 };
