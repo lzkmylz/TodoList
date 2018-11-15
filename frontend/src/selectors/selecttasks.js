@@ -9,16 +9,16 @@ Task data structure:
 6 task description
 */
 
-export default (tasks, filters) => {
+export default (tasks, {titleText, sortBy}) => {
   return tasks.filter((task) => {
-    return task.title.toLowerCase().includes(filters.titleText.toLowerCase());
+    return task.title.toLowerCase().includes(titleText.toLowerCase());
   }).sort((a, b) => {
-    if (filters.sortBy === "startDate") {
+    if (sortBy === "startDate") {
       return moment(a.startDate).isBefore(moment(b.startDate)) ? 1 : -1;
-    } else if (filters.sortBy === "expireDate") {
-      return moment(a.expireDate).isBefore(moment(b.expireDate)) ? 1 : -1;
-    } else if (filters.sortBy === "level") {
-      return a.level - b.level;
+    } else if (sortBy === "expireDate") {
+      return moment(a.expireDate).isBefore(moment(b.expireDate)) ? -1 : 1;
+    } else if (sortBy === "level") {
+      return b.level - a.level;
     }
     return undefined
   });

@@ -20,7 +20,7 @@ const levelMap = {
 export const TodoTaskListItem = ({
   id,
   startDate,
-  ExpireDate,
+  expireDate,
   level,
   title,
   description,
@@ -34,10 +34,10 @@ export const TodoTaskListItem = ({
         </div>
         <h3 className="list-item__data">
           {
-            moment().isBefore(ExpireDate) ? (
-            `距离Deadline还有${Math.abs(moment().diff(moment(ExpireDate), 'days'))}天`
+            moment().isBefore(expireDate) ? (
+            `距离Deadline还有${Math.abs(moment().diff(moment(expireDate), 'days'))}天`
             ) : (
-              `超过Deadline${moment().diff(moment(ExpireDate), 'days')}天`
+              `超过Deadline${moment().diff(moment(expireDate), 'days')}天`
             )
           }
         </h3>
