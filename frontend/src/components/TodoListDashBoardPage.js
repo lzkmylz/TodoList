@@ -1,8 +1,9 @@
 import React from 'react';
+import TodoTaskList from './TodoTaskList';
 
 const TodoListDashBoardPage = () => (
   <div>
-    TodoListDashBoardPage
+    <TodoTaskList />
   </div>
 );
 

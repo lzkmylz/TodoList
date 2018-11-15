@@ -5,10 +5,10 @@ import taskReducer from '../reducers/tasks';
 
 export default () => {
   const store = createStore(
-    combineReducers([
-      filterReducer,
-      taskReducer
-    ]),
+    combineReducers({
+      filters: filterReducer,
+      tasks: taskReducer
+    }),
     applyMiddleware(thunk)
   );
 
