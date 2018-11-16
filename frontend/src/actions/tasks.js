@@ -31,10 +31,14 @@ export const startAddTask = (taskData = {
       headers,
       method: "POST",
       body,
-    }).then(res => res.json())
-      .then(task => {
-        return dispatch(addTask(task));
-      });
+    }).then(response => {
+      if (response.status !== 200) {
+        throw new Error('Fail to get response with status ' + response.status);
+      }
+      response.json().then((responseJson => {
+        return dispatch(startAddTask(responseJson));
+      }));
+    })
   };
 };
 
@@ -90,13 +94,15 @@ export const setTasks = (tasks) => ({
 
 export const startSetTasks = () => {
   return dispatch => {
-    let headers = {"Content-Type": "application/json"};
+    let headers = { "Content-Type": "application/json" };
 
-    return fetch("/api/tasks/", {
+    return fetch("/api/tasks", {
       headers,
       method: "GET",
-    }).then(res => {
-      return dispatch(setTasks(res.json()));
+    }).then(response => {
+      response.json().then((responseJson) => {
+        return dispatch(setTasks(responseJson));
+      });
     });
   }
 };
