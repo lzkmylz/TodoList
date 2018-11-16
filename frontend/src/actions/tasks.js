@@ -26,7 +26,7 @@ export const startAddTask = (taskData = {
   return (dispatch, getState) => {
     let headers = {"Content-Type": "application/json"};
     let body = JSON.stringify(taskData);
-    return fetch("http://localhost:8000/api/tasks/", {
+    return fetch("/api/tasks/", {
       body,
       headers,
       method: "POST"
@@ -90,15 +90,15 @@ export const setTasks = (tasks) => ({
 });
 
 export const startSetTasks = () => {
-  return dispatch => {
-    let headers = { "Content-Type": "application/json" };
+  return (dispatch, getState) => {
+    let headers = {"Content-Type": "application/json"};
 
-    return fetch("/api/tasks", {
+    return fetch("/api/tasks/", {
       headers,
       method: "GET",
     }).then(response => {
       response.json().then((responseJson) => {
-        return dispatch(setTasks(responseJson));
+        dispatch(setTasks(responseJson));
       });
     });
   };

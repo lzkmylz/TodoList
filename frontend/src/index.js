@@ -4,8 +4,22 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import './styles/styles.scss';
+import LoadingPage from './components/LoadingPage';
+import { startSetTasks } from './actions/tasks';
+import { store } from './App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+let hasRendered = false;
+const renderApp = () => {
+  if (!hasRendered) {
+      ReactDOM.render(<App />, document.getElementById('root'));
+      hasRendered = true;
+  }
+};
+ReactDOM.render(<LoadingPage />, document.getElementById('root'));
+
+store.dispatch(startSetTasks()).then(() => {
+  renderApp();
+});
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
