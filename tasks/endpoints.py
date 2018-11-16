@@ -1,7 +1,7 @@
 from django.conf.urls import include, url
 from rest_framework import routers
 
-from .api import TaskViewSet
+from .views import TaskViewSet
 
 router = routers.DefaultRouter()
 router.register('tasks', TaskViewSet)

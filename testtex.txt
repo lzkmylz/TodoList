@@ -1,0 +1,22 @@
+curl --request POST \
+  --url http://localhost:8000/api/tasks/ \
+  --header 'content-type: application/json' \
+  --data '{
+    "description": "华创再过去一点的奥斯汀",
+    "expireDate": "2018-11-22T19:54:30+08:00",
+    "level": 0,
+    "startDate":"2018-11-13T19:54:30+08:00",
+    "title": "唱K去！"
+}'
+
+curl --request GET \
+  --url http://localhost:8000/api/tasks/ \
+  --header 'content-type: application/json'
+
+curl --request GET \
+  --url http://localhost:8000/api/tasks/2/ \
+  --header 'content-type: application/json'
+
+curl --request DELETE \
+  --url http://localhost:8000/api/tasks/9/ \
+  --header 'content-type: application/json'

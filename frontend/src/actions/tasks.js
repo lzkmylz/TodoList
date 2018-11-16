@@ -17,28 +17,24 @@ export const addTask = task => ({
 });
 
 export const startAddTask = (taskData = {
-  startDate: moment(),
-  expireDate: moment(),
+  startDate: moment().format(),
+  expireDate: moment().format(),
   level: 0,
   title: '',
   description: '',
 }) => {
-  return dispatch => {
+  return (dispatch, getState) => {
     let headers = {"Content-Type": "application/json"};
     let body = JSON.stringify(taskData);
-
-    return fetch("/api/tasks/", {
-      headers,
-      method: "POST",
+    return fetch("http://localhost:8000/api/tasks/", {
       body,
+      headers,
+      method: "POST"
     }).then(response => {
-      if (response.status !== 200) {
-        throw new Error('Fail to get response with status ' + response.status);
-      }
       response.json().then((responseJson => {
-        return dispatch(startAddTask(responseJson));
+        dispatch(addTask(responseJson));
       }));
-    })
+    });
   };
 };
 
@@ -55,13 +51,13 @@ export const startRemoveTask = ({ id }) => {
     return fetch(`/api/tasks/${id}/`, {
       headers,
       method: "DELETE",
-    }).then(res => {
-        if (res.ok) {
+    }).then(response => {
+        if (response.ok) {
           return dispatch(removeTask({ id }));
         }
-      })
-  }
-}
+      });
+  };
+};
 
 // EDIT_TASK
 export const editTask = (id, updates) => ({
@@ -73,16 +69,17 @@ export const editTask = (id, updates) => ({
 export const startEditTask = (id, updates) => {
   return dispatch => {
     let headers = {"Content-Type": "application/json"};
-    let body = JSON.stringify(updates);
+    let data = JSON.stringify(updates);
 
     return fetch(`/api/tasks/${id}/`, {
       headers,
       method: "PUT",
-      body,
-    }).then(res => res.json())
-      .then((id, updates) => {
+      data,
+    }).then(response => {
+      response.json().then(() => {
         return dispatch(editTask(id, updates));
-      })
+      });
+    });
   };
 };
 
@@ -104,5 +101,5 @@ export const startSetTasks = () => {
         return dispatch(setTasks(responseJson));
       });
     });
-  }
+  };
 };

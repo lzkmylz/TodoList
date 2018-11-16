@@ -7,10 +7,9 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = (
         'id', 
-        'start_date', 
-        'expire_date',
+        'startDate', 
+        'expireDate',
         'level',
         'title',
         'description'
       )
-    
