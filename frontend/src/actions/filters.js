@@ -18,3 +18,9 @@ export const sortByExpireDate = () => ({
 export const sortByStartDate = () => ({
   type: "SORT_BY_STARTDATE",
 });
+
+// SORT_BY_ISFINISH
+export const sortByIsFinish = (finishState) => ({
+  type: "SORT_BY_ISFINISH",
+  finishState,
+})

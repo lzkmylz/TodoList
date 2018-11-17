@@ -11,5 +11,6 @@ class TaskSerializer(serializers.ModelSerializer):
         'expireDate',
         'level',
         'title',
-        'description'
+        'description',
+        'isFinish'
       )

@@ -17,6 +17,11 @@ const levelMap = {
   2: "优先级：紧急",
 };
 
+const stateMap = {
+  0: '未完成',
+  1: '已完成',
+}
+
 export const TodoTaskListItem = ({
   id,
   startDate,
@@ -24,6 +29,7 @@ export const TodoTaskListItem = ({
   level,
   title,
   description,
+  isFinish,
   }) => (
     <Link className="list-item" to={`/edit/${id}`}>
         <div>
@@ -32,15 +38,23 @@ export const TodoTaskListItem = ({
             <p className="list-item__sub-title">{levelMap[level]}</p>
             <p className="list-item__sub-title">开始时间：{moment(startDate).format('YYYY-MM-DD')}</p>
         </div>
-        <h3 className="list-item__data">
-          {
-            moment().isBefore(expireDate) ? (
-            `距离Deadline还有${Math.abs(moment().diff(moment(expireDate), 'days'))}天`
-            ) : (
-              `超过Deadline${moment().diff(moment(expireDate), 'days')}天`
-            )
-          }
-        </h3>
+        <div>
+          <h3 className="list-item__state">
+            {
+              stateMap[isFinish]
+            }
+          </h3>
+          <h3 className="list-item__data">
+            {
+              moment().isBefore(expireDate) ? (
+              `距离Deadline还有${Math.abs(moment().diff(moment(expireDate), 'days'))}天`
+              ) : (
+                `超过Deadline${moment().diff(moment(expireDate), 'days')}天`
+              )
+            }
+          </h3>
+        </div>
+        
     </Link>
 );
 

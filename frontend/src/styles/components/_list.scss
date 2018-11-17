@@ -46,6 +46,14 @@
   }
 }
 
+.list-item__state {
+  margin: $s-size 0 0 0;
+  @media (min-width: $desktop-breakpoint) {
+    margin: 0 0 $m-size 0;
+    text-align: right;
+  }
+}
+
 .list-item__message {
   align-items: center;
   color: gray;

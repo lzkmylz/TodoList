@@ -8,6 +8,7 @@ Task data structure:
 4 task level (0: normal, 1: important, 2: urgent)
 5 task title
 6 task description
+7 isFinish (0 not finish, 1 finish)
 */
 
 // ADD TASK
@@ -22,6 +23,7 @@ export const startAddTask = (taskData = {
   level: 0,
   title: '',
   description: '',
+  isFinish: 0,
 }) => {
   return (dispatch, getState) => {
     let headers = {"Content-Type": "application/json"};

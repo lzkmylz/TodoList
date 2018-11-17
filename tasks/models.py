@@ -10,9 +10,11 @@ class Task(models.Model):
   4 task level (0: normal, 1: important, 2: urgent)
   5 task title
   6 task descript
+  7 isFinish
   '''
   startDate = models.CharField(max_length=255)
   expireDate = models.CharField(max_length=255)
   level = models.CharField(max_length=255)
   title = models.CharField(max_length=255)
   description = models.CharField(max_length=255)
+  isFinish = models.CharField(max_length=255)
