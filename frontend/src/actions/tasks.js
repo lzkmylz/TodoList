@@ -29,9 +29,9 @@ export const startAddTask = (taskData = {
     let headers = {"Content-Type": "application/json"};
     let body = JSON.stringify(taskData);
     return fetch("/api/tasks/", {
-      body,
       headers,
-      method: "POST"
+      method: "POST",
+      body: body,
     }).then(response => {
       response.json().then((responseJson => {
         dispatch(addTask(responseJson));

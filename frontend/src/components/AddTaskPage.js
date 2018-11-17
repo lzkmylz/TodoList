@@ -5,6 +5,11 @@ import { startAddTask } from '../actions/tasks';
 
 export class AddTaskPage extends React.Component {
 
+  onSubmit = (task) => {
+    this.props.startAddTask(task);
+    this.props.history.push('/');
+  }
+
   render() {
     return (
       <div>
@@ -24,7 +29,7 @@ export class AddTaskPage extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  startAddTask: (task) => dispatch(startAddTask(task))
+  startAddTask: (task) => dispatch(startAddTask(task)),
 });
 
 export default connect(undefined, mapDispatchToProps)(AddTaskPage);
