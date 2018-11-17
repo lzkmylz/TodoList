@@ -20,6 +20,7 @@ export class TaskForm extends React.Component {
       level: props.task ? props.task.level : '0',
       title: props.task ? props.task.title : '',
       description: props.task ? props.task.description : '',
+      validDate: true,
     };
   }
 
@@ -38,6 +39,39 @@ export class TaskForm extends React.Component {
         })
       }
     });
+  }
+
+  check = (e, type) => {
+    if (type === "checkExpireDateChange") {
+      return moment(e).isAfter(moment(this.state.startDate));
+    } else if (type === "checkStartDateChange") {
+      return moment(this.state.expireDate).isAfter(moment(e));
+    }
+    return false
+  }
+
+  onExpireDateChange = (e) => {
+    if (e) {
+      this.setState({
+        expireDate: e.format(),
+        validDate: this.check(e, "checkExpireDateChange")
+      });
+    } else {
+      this.setState({ expireDate: e });
+    }
+    console.log(this.state);
+  }
+
+  onStartDateChange = (e) => {
+    if (e) {
+      this.setState({
+        startDate: e.format(),
+        validDate: this.check(e, "checkStartDateChange")
+      });
+    } else {
+      this.setState({ startDate: e });
+    }
+    console.log(this.state);
   }
 
   render() {
@@ -95,6 +129,8 @@ export class TaskForm extends React.Component {
         <FormItem
           {...formItemLayout}
           label="起始时间"
+          validateStatus={this.state.validDate ? "success" : "error"}
+          help="起始时间应早于结束时间"
         >
           {getFieldDecorator('起始时间', {
             initialValue: this.state.startDate,
@@ -102,12 +138,14 @@ export class TaskForm extends React.Component {
               required: true, message: '必须选择一个起始时间',
             }],
           })(
-            <DatePicker />
+            <DatePicker onChange={this.onStartDateChange}/>
           )}
         </FormItem>
         <FormItem
           {...formItemLayout}
           label="结束时间"
+          validateStatus={this.state.validDate ? "success" : "error"}
+          help="结束时间应晚于起始时间"
         >
           {getFieldDecorator('结束时间', {
             initialValue: this.state.expireDate,
@@ -115,7 +153,7 @@ export class TaskForm extends React.Component {
               required: true, message: '必须选择一个结束时间',
             }],
           })(
-            <DatePicker />
+            <DatePicker onChange={this.onExpireDateChange}/>
           )}
         </FormItem>
         <FormItem
