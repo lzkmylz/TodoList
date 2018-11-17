@@ -84,8 +84,8 @@ export const startEditTask = (task) => {
       method: "PUT",
       body: data,
     }).then(response => {
-      response.json().then(() => {
-        return dispatch(editTask(task));
+      response.json().then((responseJson) => {
+        return dispatch(editTask(responseJson));
       });
     });
   };

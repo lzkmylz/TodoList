@@ -13,10 +13,10 @@ const taskReducer = (state = taskReducerDefaultState, action) => {
       return state.filter(({ id }) => id !== action.id);
     case 'EDIT_TASK':
       return state.map((task) => {
-        if (task.id === action.task.id) {
+        if (task.id.toString() === action.task.id.toString()) {
           return action.task;
         }
-        return true;
+        return task
       });
     case 'SET_TASKS':
       return action.tasks;

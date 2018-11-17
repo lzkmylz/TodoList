@@ -30,16 +30,32 @@ export class TodoListFilter extends React.Component {
     this.props.sortByIsFinish(!e);
   }
 
+  onMenuChange = (e) => {
+    switch(e.key) {
+      case "0":
+        this.props.sortByStartDate();
+        break;
+      case "1":
+        this.props.sortByExpireDate();
+        break;
+      case "2":
+        this.props.sortByLevel();
+        break;
+      default:
+        return undefined
+    }
+  }
+
   render() {
     const menu = (
       <Menu>
-        <Menu.Item key="0">
+        <Menu.Item key="0" onClick={this.onMenuChange}>
           <span>按创建日期排序</span>
         </Menu.Item>
-        <Menu.Item key="1">
+        <Menu.Item key="1" onClick={this.onMenuChange}>
           <span>按Deadline日期排序</span>
         </Menu.Item>
-        <Menu.Item key="3">
+        <Menu.Item key="2" onClick={this.onMenuChange}>
           <span>按优先级排序</span>
         </Menu.Item>
       </Menu>

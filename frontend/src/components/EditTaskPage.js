@@ -32,7 +32,7 @@ export class AddTaskPage extends React.Component {
             onSubmit={this.onSubmit}
             task={this.props.task}
           />
-          <Col offset={6}>
+          <Col xs={{ span:24, offset:0 }} sm={{ span:16, offset:6 }}>
             <Button
               type="primary"
               onClick={this.onClick}
@@ -47,7 +47,6 @@ export class AddTaskPage extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-  console.log(state, props);
   return {
       task: state.tasks.find((task) => task.id.toString() === props.match.params.id.toString()),
   };

@@ -28,8 +28,9 @@ export class TaskForm extends React.Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         this.props.onSubmit({
-          startDate: moment(values['起始时间']),
-          expireDate: moment(values['结束时间']),
+          id: this.props.task.id,
+          startDate: moment(values['起始时间']).format(),
+          expireDate: moment(values['结束时间']).format(),
           level: values['优先级'],
           title: values['待办事项标题'],
           description: values['待办事项内容'],
