@@ -13,11 +13,8 @@ const taskReducer = (state = taskReducerDefaultState, action) => {
       return state.filter(({ id }) => id !== action.id);
     case 'EDIT_TASK':
       return state.map((task) => {
-        if (task.id === action.id) {
-          return [
-            ...task,
-            action.updates
-          ];
+        if (task.id === action.task.id) {
+          return action.task;
         }
         return true;
       });

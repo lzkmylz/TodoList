@@ -62,24 +62,30 @@ export const startRemoveTask = ({ id }) => {
 };
 
 // EDIT_TASK
-export const editTask = (id, updates) => ({
+export const editTask = (task) => ({
   type: "EDIT_TASK",
-  id,
-  updates,
+  task,
 });
 
-export const startEditTask = (id, updates) => {
-  return dispatch => {
+export const startEditTask = (task) => {
+  return (dispatch, getState) => {
     let headers = {"Content-Type": "application/json"};
-    let data = JSON.stringify(updates);
+    let data = JSON.stringify({
+      startDate: task.startDate,
+      expireDate: task.expireDate,
+      level: task.level,
+      title: task.title,
+      description: task.description,
+      isFinish: task.isFinish,
+    });
 
-    return fetch(`/api/tasks/${id}/`, {
+    return fetch(`/api/tasks/${task.id}/`, {
       headers,
       method: "PUT",
-      data,
+      body: data,
     }).then(response => {
       response.json().then(() => {
-        return dispatch(editTask(id, updates));
+        return dispatch(editTask(task));
       });
     });
   };

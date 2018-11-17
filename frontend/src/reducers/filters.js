@@ -2,7 +2,7 @@
 
 const filterReducerDefaultState = {
   titleText: '',
-  finishState: 0,
+  isFinishFilter: 0,
   sortBy: 'startDate',
 };
 
@@ -28,11 +28,10 @@ const filterReducer = (state = filterReducerDefaultState, action) => {
         ...state,
         sortBy: 'startDate',
       }
-    case 'SORT_BY_ISFINISH':
+    case 'SET_ISFINISH_FILTER':
       return {
         ...state,
-        sortBy: 'isFinish',
-        finishState: action.finishState,
+        isFinishFilter: action.isFinishFilter,
       }
     default:
       return state;

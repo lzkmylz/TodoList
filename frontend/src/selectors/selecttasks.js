@@ -10,24 +10,19 @@ Task data structure:
 7 isFinish
 */
 
-export default (tasks, {titleText, finishState, sortBy}) => {
-  let filteredTasks = tasks.filter((task) => {
-    return task.title.toLowerCase().includes(titleText.toLowerCase());
+export default (tasks, {titleText, isFinishFilter, sortBy}) => {
+  return tasks.filter((task) => {
+    let isFinish = isFinishFilter ? task.isFinish.toString() === "0" : true;
+    let textFilter = task.title.toLowerCase().includes(titleText.toLowerCase());
+    return isFinish && textFilter;
+  }).sort((a, b) => {
+    if (sortBy === "startDate") {
+      return moment(a.startDate).isBefore(moment(b.startDate)) ? 1 : -1;
+    } else if (sortBy === "expireDate") {
+      return moment(a.expireDate).isBefore(moment(b.expireDate)) ? -1 : 1;
+    } else if (sortBy === "level") {
+      return b.level - a.level;
+    }
+    return undefined
   });
-  if (sortBy === 'isFinish') {
-    return filteredTasks.filter((task) => {
-      return task.isFinish.toString() === finishState.toString();
-    });
-  } else {
-    return filteredTasks.sort((a, b) => {
-      if (sortBy === "startDate") {
-        return moment(a.startDate).isBefore(moment(b.startDate)) ? 1 : -1;
-      } else if (sortBy === "expireDate") {
-        return moment(a.expireDate).isBefore(moment(b.expireDate)) ? -1 : 1;
-      } else if (sortBy === "level") {
-        return b.level - a.level;
-      }
-      return undefined
-    });
-  }
 }

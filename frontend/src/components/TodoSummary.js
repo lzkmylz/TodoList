@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import selecttasks from '../selectors/selecttasks';
+import Button from 'antd/lib/button';
+import 'antd/lib/button/style/css';
 
 const minExpireDate = (tasks) => {
   return tasks.sort((a, b) => {
@@ -30,9 +32,9 @@ export const TodoSummary = (props) => (
           )
         }
       </div>
-      <div className="page-header_actions">
-        <Link className="button" to="/create" >Add Task</Link>
-      </div>
+      <Button type="primary" size="large">
+        <Link to="/create" >添加待办事项</Link>
+      </Button>
     </div>
   </div>
 )
