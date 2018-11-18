@@ -7,7 +7,7 @@ import 'antd/lib/button/style/css';
 import Col from 'antd/lib/col';
 import 'antd/lib/col/style/css';
 
-export class AddTaskPage extends React.Component {
+export class EditTaskPage extends React.Component {
 
   onSubmit = (task) => {
     this.props.startEditTask({
@@ -60,4 +60,4 @@ const mapDispatchToProps = (dispatch) => ({
   startRemoveTask: ({ id }) => dispatch(startRemoveTask({ id })),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddTaskPage);
+export default connect(mapStateToProps, mapDispatchToProps)(EditTaskPage);
