@@ -10,7 +10,10 @@ import 'antd/lib/col/style/css';
 export class AddTaskPage extends React.Component {
 
   onSubmit = (task) => {
-    this.props.startEditTask(task);
+    this.props.startEditTask({
+      id: this.props.task.id,
+      ...task
+    });
     this.props.history.push('/');
   }
 
