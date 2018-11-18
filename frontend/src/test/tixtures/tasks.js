@@ -11,17 +11,17 @@ const tasks = [{
 },{
   startDate: moment().subtract(5, 'days').format(),
   expireDate: moment().add(9, 'days').format(),
-  level: 1,
+  level: '1',
   title: '测试样例2',
   description: '测试样例2',
-  isFinish: 0,
+  isFinish: '0',
 },{
   startDate: moment().subtract(9, 'days').format(),
   expireDate: moment().add(3, 'days').format(),
-  level: 2,
+  level: '2',
   title: '测试样例3',
   description: '测试样例3',
-  isFinish: 0,
+  isFinish: '0',
 }];
 
 export default tasks;

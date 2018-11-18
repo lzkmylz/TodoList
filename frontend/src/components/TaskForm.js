@@ -58,7 +58,6 @@ export class TaskForm extends React.Component {
     } else {
       this.setState({ expireDate: e });
     }
-    console.log(this.state);
   }
 
   onStartDateChange = (e) => {
@@ -121,6 +120,9 @@ export class TaskForm extends React.Component {
         >
           {getFieldDecorator('待办事项内容', {
             initialValue: this.state.description,
+            rules: [{
+              required: true, message: '需要事项描述',
+            }],
           })(
             <TextArea />
           )}

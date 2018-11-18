@@ -25,18 +25,15 @@ export const startAddTask = (taskData = {
   description: '',
   isFinish: 0,
 }) => {
-  return (dispatch, getState) => {
+  return dispatch => {
     let headers = {"Content-Type": "application/json"};
     let body = JSON.stringify(taskData);
     return fetch("/api/tasks/", {
       headers,
       method: 'POST',
       body: body,
-    }).then(response => {
-      response.json().then((responseJson => {
-        dispatch(addTask(responseJson));
-      }));
-    });
+    }).then(res => res.json())
+      .then(json => dispatch(addTask(json)))
   };
 };
 
@@ -53,11 +50,7 @@ export const startRemoveTask = ({ id }) => {
     return fetch(`/api/tasks/${id}/`, {
       headers,
       method: 'DELETE',
-    }).then(response => {
-        if (response.ok) {
-          return dispatch(removeTask({ id }));
-        }
-      });
+    }).then(() => dispatch(removeTask({ id })));
   };
 };
 
@@ -68,7 +61,7 @@ export const editTask = (task) => ({
 });
 
 export const startEditTask = (task) => {
-  return (dispatch, getState) => {
+  return dispatch => {
     let headers = {"Content-Type": "application/json"};
     let data = JSON.stringify({
       startDate: task.startDate,
@@ -83,11 +76,8 @@ export const startEditTask = (task) => {
       headers,
       method: 'PUT',
       body: data,
-    }).then(response => {
-      response.json().then((responseJson) => {
-        return dispatch(editTask(responseJson));
-      });
-    });
+    }).then(res => res.json())
+      .then(json => dispatch(editTask(json)));
   };
 };
 
@@ -98,16 +88,13 @@ export const setTasks = (tasks) => ({
 });
 
 export const startSetTasks = () => {
-  return (dispatch, getState) => {
+  return dispatch => {
     let headers = {"Content-Type": "application/json"};
 
     return fetch("/api/tasks/", {
       headers,
       method: "GET",
-    }).then(response => {
-      response.json().then((responseJson) => {
-        dispatch(setTasks(responseJson));
-      });
-    });
+    }).then(res => res.json())
+      .then(json => dispatch(setTasks(json)));
   };
 };
