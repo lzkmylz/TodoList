@@ -11,19 +11,24 @@
 
 ## 基于是否完成对事项进行显示
 
-In the project directory, you can run:
+![](https://github.com/lzkmylz/TodoList/blob/master/gifs/unfinishOnly.gif)  
 
 ## 基于优先级对事项进行显示
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+![](https://github.com/lzkmylz/TodoList/blob/master/gifs/rankBylevel.gif)
 
 ## 基于事项标题的匹配检索
 
+![](https://github.com/lzkmylz/TodoList/blob/master/gifs/searchByTitle.gif)
+
 ## 增加一个待办事项
+
+![](https://github.com/lzkmylz/TodoList/blob/master/gifs/addNewTask.gif)
 
 ## 编辑一个待办事项
 
+![](https://github.com/lzkmylz/TodoList/blob/master/gifs/editTask.gif)
+
 ## 删除一个待办事项
 
+![](https://github.com/lzkmylz/TodoList/blob/master/gifs/removeTask.gif)
