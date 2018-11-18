@@ -30,7 +30,7 @@ export const startAddTask = (taskData = {
     let body = JSON.stringify(taskData);
     return fetch("/api/tasks/", {
       headers,
-      method: "POST",
+      method: 'POST',
       body: body,
     }).then(response => {
       response.json().then((responseJson => {
@@ -42,7 +42,7 @@ export const startAddTask = (taskData = {
 
 // REMOVE_TASK
 export const removeTask = ({ id }) => ({
-  type: "REMOVE_TASK",
+  type: 'REMOVE_TASK',
   id,
 });
 
@@ -52,7 +52,7 @@ export const startRemoveTask = ({ id }) => {
 
     return fetch(`/api/tasks/${id}/`, {
       headers,
-      method: "DELETE",
+      method: 'DELETE',
     }).then(response => {
         if (response.ok) {
           return dispatch(removeTask({ id }));
@@ -63,7 +63,7 @@ export const startRemoveTask = ({ id }) => {
 
 // EDIT_TASK
 export const editTask = (task) => ({
-  type: "EDIT_TASK",
+  type: 'EDIT_TASK',
   task,
 });
 
@@ -81,7 +81,7 @@ export const startEditTask = (task) => {
 
     return fetch(`/api/tasks/${task.id}/`, {
       headers,
-      method: "PUT",
+      method: 'PUT',
       body: data,
     }).then(response => {
       response.json().then((responseJson) => {
@@ -93,7 +93,7 @@ export const startEditTask = (task) => {
 
 //SET_TASKS
 export const setTasks = (tasks) => ({
-  type: "SET_TASKS",
+  type: 'SET_TASKS',
   tasks,
 });
 
